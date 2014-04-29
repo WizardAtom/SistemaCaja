@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="320" pageHeight="450" columnWidth="280" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4dfda7bf-52a1-4f5d-8d49-f0e10d9e3e60">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="conection" uuid="dff81bf9-70a3-43dd-adcf-9c11a5efd7ad">
+		<queryString language="SQL">
+			<![CDATA[select 
+r.numRec, r.total,r.fecha,
+d.concepto, d.subtotal, d.cantidad, d.pUnitario,
+u.numDoc, concat(u.nombre,' ', u.apePat,' ', u.apeMat) as nombre
+from detallerecibo as d, usuarios as u, recibo as r
+where r.numRec = d.numRecibo and
+      r.codUsu = u.codUsu and
+      r.numRec = 53;]]>
+		</queryString>
+		<field name="numRec" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="concepto" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="subtotal" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cantidad" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="pUnitario" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="numDoc" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="numerorecibo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+r.numRec, r.total,r.fecha,
+d.concepto, d.subtotal, d.cantidad, d.pUnitario,
+u.numDoc, concat(u.nombre,' ', u.apePat,' ', u.apeMat) as nombre
+from detallerecibo as d, usuarios as u, recibo as r
+where r.numRec = d.numRecibo and
+      r.codUsu = u.codUsu and
+      r.numRec = $P{numerorecibo};]]>
+	</queryString>
+	<field name="numRec" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="concepto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pUnitario" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numDoc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="153" splitType="Stretch">
+			<textField>
+				<reportElement x="53" y="109" width="165" height="20" uuid="5e7f1a70-9fa6-4dee-b7e4-760bdefde46c"/>
+				<textElement>
+					<font fontName="Serif" size="10" isBold="false"/>
+					<paragraph firstLineIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="81" width="78" height="20" uuid="8175484d-434b-492b-9f94-628da8fd9086"/>
+				<textElement>
+					<font fontName="Serif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numDoc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="98" y="0" width="77" height="13" uuid="ce079876-b920-4846-8e7b-b2c62f068842"/>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="27" height="13" uuid="e5dd6737-e1cf-433d-832f-676c20cdb8db"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pUnitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="0" width="52" height="13" uuid="0d201ee0-8ef0-4cea-a77b-25a3c43918c8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="0" width="28" height="13" uuid="9d9c4eab-2428-41d5-a5b1-4ad46932a138"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="56" width="100" height="13" uuid="bb0aa4c6-4936-47cc-a5bd-4b2a51476eb9"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="9" width="45" height="20" uuid="1640ac5e-ec57-4aac-a6c7-9c45a0f0c2fc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
